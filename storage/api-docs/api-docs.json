@@ -1,0 +1,1414 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Eyva OpenApi Documentation",
+        "description": "Eyva Swagger OpenApi Documentation",
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1/api/v1",
+            "description": "Eyva API Server"
+        }
+    ],
+    "paths": {
+        "/abonnements": {
+            "get": {
+                "tags": [
+                    "abonnements"
+                ],
+                "summary": "Get abonnements",
+                "description": "Get abonnements",
+                "operationId": "abonnements",
+                "responses": {
+                    "200": {
+                        "description": "HTTP_OK"
+                    },
+                    "400": {
+                        "description": "HTTP_BAD_REQUEST"
+                    },
+                    "401": {
+                        "description": "HTTP_UNAUTHORIZED"
+                    },
+                    "500": {
+                        "description": "HTTP_INTERNAL_SERVER_ERROR"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/abonnements/{id}": {
+            "get": {
+                "tags": [
+                    "abonnements"
+                ],
+                "summary": "Get one by id from abonnements",
+                "description": "Get one by id from abonnements",
+                "operationId": "showabonnements",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "HTTP_OK"
+                    },
+                    "400": {
+                        "description": "HTTP_BAD_REQUEST"
+                    },
+                    "401": {
+                        "description": "HTTP_UNAUTHORIZED"
+                    },
+                    "500": {
+                        "description": "HTTP_INTERNAL_SERVER_ERROR"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/abonnements/{abonnement_id}/buy": {
+            "post": {
+                "tags": [
+                    "abonnements"
+                ],
+                "summary": "buy",
+                "description": "buy",
+                "operationId": "buyabonnements",
+                "parameters": [
+                    {
+                        "name": "abonnement_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "HTTP_OK"
+                    },
+                    "400": {
+                        "description": "HTTP_BAD_REQUEST"
+                    },
+                    "401": {
+                        "description": "HTTP_UNAUTHORIZED"
+                    },
+                    "500": {
+                        "description": "HTTP_INTERNAL_SERVER_ERROR"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/auth/login": {
+            "post": {
+                "tags": [
+                    "authentication"
+                ],
+                "summary": "login",
+                "description": "login",
+                "operationId": "login",
+                "requestBody": {
+                    "description": "Data for login",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "phone": {
+                                        "type": "string",
+                                        "default": "77012345678"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "default": "Password1"
+                                    },
+                                    "password_confirmation": {
+                                        "type": "string",
+                                        "default": "Password1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "HTTP_OK"
+                    },
+                    "400": {
+                        "description": "HTTP_BAD_REQUEST"
+                    },
+                    "401": {
+                        "description": "HTTP_UNAUTHORIZED"
+                    },
+                    "500": {
+                        "description": "HTTP_INTERNAL_SERVER_ERROR"
+                    }
+                }
+            }
+        },
+        "/auth/refresh": {
+            "post": {
+                "tags": [
+                    "authentication"
+                ],
+                "summary": "refresh",
+                "description": "refresh",
+                "operationId": "refresh",
+                "responses": {
+                    "200": {
+                        "description": "HTTP_OK"
+                    },
+                    "400": {
+                        "description": "HTTP_BAD_REQUEST"
+                    },
+                    "401": {
+                        "description": "HTTP_UNAUTHORIZED"
+                    },
+                    "500": {
+                        "description": "HTTP_INTERNAL_SERVER_ERROR"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/auth/logout": {
+            "post": {
+                "tags": [
+                    "authentication"
+                ],
+                "summary": "logout",
+                "description": "logout",
+                "operationId": "logout",
+                "responses": {
+                    "200": {
+                        "description": "HTTP_OK"
+                    },
+                    "400": {
+                        "description": "HTTP_BAD_REQUEST"
+                    },
+                    "401": {
+                        "description": "HTTP_UNAUTHORIZED"
+                    },
+                    "500": {
+                        "description": "HTTP_INTERNAL_SERVER_ERROR"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/categories": {
+            "get": {
+                "tags": [
+                    "categories"
+                ],
+                "summary": "Get categories",
+                "description": "Get categories",
+                "operationId": "categories",
+                "responses": {
+                    "200": {
+                        "description": "HTTP_OK"
+                    },
+                    "400": {
+                        "description": "HTTP_BAD_REQUEST"
+                    },
+                    "401": {
+                        "description": "HTTP_UNAUTHORIZED"
+                    },
+                    "500": {
+                        "description": "HTTP_INTERNAL_SERVER_ERROR"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/categories/{id}": {
+            "get": {
+                "tags": [
+                    "categories"
+                ],
+                "summary": "Get one by id from categories",
+                "description": "Get one by id from categories",
+                "operationId": "showcategories",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "HTTP_OK"
+                    },
+                    "400": {
+                        "description": "HTTP_BAD_REQUEST"
+                    },
+                    "401": {
+                        "description": "HTTP_UNAUTHORIZED"
+                    },
+                    "500": {
+                        "description": "HTTP_INTERNAL_SERVER_ERROR"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/enrollments/current": {
+            "get": {
+                "tags": [
+                    "enrollments"
+                ],
+                "summary": "Get current enrollments",
+                "description": "Get current enrollments",
+                "operationId": "indexcurrentenrollments",
+                "responses": {
+                    "200": {
+                        "description": "HTTP_OK"
+                    },
+                    "400": {
+                        "description": "HTTP_BAD_REQUEST"
+                    },
+                    "401": {
+                        "description": "HTTP_UNAUTHORIZED"
+                    },
+                    "500": {
+                        "description": "HTTP_INTERNAL_SERVER_ERROR"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/enrollments/history": {
+            "get": {
+                "tags": [
+                    "enrollments"
+                ],
+                "summary": "Get history enrollments",
+                "description": "Get history enrollments",
+                "operationId": "indexhistoryenrollments",
+                "responses": {
+                    "200": {
+                        "description": "HTTP_OK"
+                    },
+                    "400": {
+                        "description": "HTTP_BAD_REQUEST"
+                    },
+                    "401": {
+                        "description": "HTTP_UNAUTHORIZED"
+                    },
+                    "500": {
+                        "description": "HTTP_INTERNAL_SERVER_ERROR"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/enrollments/{id}": {
+            "get": {
+                "tags": [
+                    "enrollments"
+                ],
+                "summary": "Get one by id from enrollments",
+                "description": "Get one by id from enrollments",
+                "operationId": "showenrollments",
+                "responses": {
+                    "200": {
+                        "description": "HTTP_OK"
+                    },
+                    "400": {
+                        "description": "HTTP_BAD_REQUEST"
+                    },
+                    "401": {
+                        "description": "HTTP_UNAUTHORIZED"
+                    },
+                    "500": {
+                        "description": "HTTP_INTERNAL_SERVER_ERROR"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/enrollments/{id}/reschedule": {
+            "post": {
+                "tags": [
+                    "enrollments"
+                ],
+                "summary": "reschedule",
+                "description": "reschedule",
+                "operationId": "enrollmentsReschedule",
+                "responses": {
+                    "200": {
+                        "description": "HTTP_OK"
+                    },
+                    "400": {
+                        "description": "HTTP_BAD_REQUEST"
+                    },
+                    "401": {
+                        "description": "HTTP_UNAUTHORIZED"
+                    },
+                    "500": {
+                        "description": "HTTP_INTERNAL_SERVER_ERROR"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/feedbacks": {
+            "get": {
+                "tags": [
+                    "feedbacks"
+                ],
+                "summary": "Get my feedbacks",
+                "description": "Get my feedbacks",
+                "operationId": "feedbacks",
+                "responses": {
+                    "200": {
+                        "description": "HTTP_OK"
+                    },
+                    "400": {
+                        "description": "HTTP_BAD_REQUEST"
+                    },
+                    "401": {
+                        "description": "HTTP_UNAUTHORIZED"
+                    },
+                    "500": {
+                        "description": "HTTP_INTERNAL_SERVER_ERROR"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/feedbacks/": {
+            "post": {
+                "tags": [
+                    "feedbacks"
+                ],
+                "summary": "Store new data into feedbacks",
+                "description": "Store new data into feedbacks",
+                "operationId": "storefeedbacks",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "stars": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    },
+                                    "program_id": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    },
+                                    "service_id": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    },
+                                    "body": {
+                                        "type": "string",
+                                        "example": "some text example for body"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "HTTP_OK"
+                    },
+                    "400": {
+                        "description": "HTTP_BAD_REQUEST"
+                    },
+                    "401": {
+                        "description": "HTTP_UNAUTHORIZED"
+                    },
+                    "500": {
+                        "description": "HTTP_INTERNAL_SERVER_ERROR"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/masterclasses": {
+            "get": {
+                "tags": [
+                    "masterclasses"
+                ],
+                "summary": "Get masterclasses",
+                "description": "Get masterclasses",
+                "operationId": "masterclasses",
+                "responses": {
+                    "200": {
+                        "description": "HTTP_OK"
+                    },
+                    "400": {
+                        "description": "HTTP_BAD_REQUEST"
+                    },
+                    "401": {
+                        "description": "HTTP_UNAUTHORIZED"
+                    },
+                    "500": {
+                        "description": "HTTP_INTERNAL_SERVER_ERROR"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/masterclasses/{id}": {
+            "get": {
+                "tags": [
+                    "masterclasses"
+                ],
+                "summary": "Get one by id from masterclasses",
+                "description": "Get one by id from masterclasses",
+                "operationId": "showmasterclasses",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "HTTP_OK"
+                    },
+                    "400": {
+                        "description": "HTTP_BAD_REQUEST"
+                    },
+                    "401": {
+                        "description": "HTTP_UNAUTHORIZED"
+                    },
+                    "500": {
+                        "description": "HTTP_INTERNAL_SERVER_ERROR"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/masterclasses/{masterclass_id}/enroll": {
+            "post": {
+                "tags": [
+                    "masterclasses"
+                ],
+                "summary": "enroll",
+                "description": "enroll",
+                "operationId": "enrollMasterclass",
+                "parameters": [
+                    {
+                        "name": "masterclass_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Data for enroll",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "service_schedule_id": {
+                                        "type": "integer",
+                                        "default": "1"
+                                    },
+                                    "user_abonnement_id": {
+                                        "type": "integer"
+                                    },
+                                    "user_abonnement_present_id": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "HTTP_OK"
+                    },
+                    "400": {
+                        "description": "HTTP_BAD_REQUEST"
+                    },
+                    "401": {
+                        "description": "HTTP_UNAUTHORIZED"
+                    },
+                    "500": {
+                        "description": "HTTP_INTERNAL_SERVER_ERROR"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/pages/schedules": {
+            "get": {
+                "tags": [
+                    "pages"
+                ],
+                "summary": "Get schedules",
+                "description": "Get schedules",
+                "operationId": "schedules",
+                "responses": {
+                    "200": {
+                        "description": "HTTP_OK"
+                    },
+                    "400": {
+                        "description": "HTTP_BAD_REQUEST"
+                    },
+                    "401": {
+                        "description": "HTTP_UNAUTHORIZED"
+                    },
+                    "500": {
+                        "description": "HTTP_INTERNAL_SERVER_ERROR"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/pages/header": {
+            "get": {
+                "tags": [
+                    "pages"
+                ],
+                "summary": "Get main page header elements",
+                "description": "Get main page header elements",
+                "operationId": "header",
+                "responses": {
+                    "200": {
+                        "description": "HTTP_OK"
+                    },
+                    "400": {
+                        "description": "HTTP_BAD_REQUEST"
+                    },
+                    "401": {
+                        "description": "HTTP_UNAUTHORIZED"
+                    },
+                    "500": {
+                        "description": "HTTP_INTERNAL_SERVER_ERROR"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/pages/about-us": {
+            "get": {
+                "tags": [
+                    "pages"
+                ],
+                "summary": "Get about us page elements",
+                "description": "Get about us page elements",
+                "operationId": "about-us",
+                "responses": {
+                    "200": {
+                        "description": "HTTP_OK"
+                    },
+                    "400": {
+                        "description": "HTTP_BAD_REQUEST"
+                    },
+                    "401": {
+                        "description": "HTTP_UNAUTHORIZED"
+                    },
+                    "500": {
+                        "description": "HTTP_INTERNAL_SERVER_ERROR"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/pages/search": {
+            "get": {
+                "tags": [
+                    "pages"
+                ],
+                "summary": "Get search",
+                "description": "Get search",
+                "operationId": "search",
+                "requestBody": {
+                    "description": "Data for search",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "query": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "HTTP_OK"
+                    },
+                    "400": {
+                        "description": "HTTP_BAD_REQUEST"
+                    },
+                    "401": {
+                        "description": "HTTP_UNAUTHORIZED"
+                    },
+                    "500": {
+                        "description": "HTTP_INTERNAL_SERVER_ERROR"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/pages/proposal": {
+            "post": {
+                "tags": [
+                    "pages"
+                ],
+                "summary": "Send a proposal",
+                "description": "Send a proposal",
+                "operationId": "proposal",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "subject",
+                                    "message"
+                                ],
+                                "properties": {
+                                    "subject": {
+                                        "type": "string",
+                                        "example": "Request Subject"
+                                    },
+                                    "message": {
+                                        "type": "string",
+                                        "example": "This is the message content."
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "HTTP_OK"
+                    },
+                    "400": {
+                        "description": "HTTP_BAD_REQUEST"
+                    },
+                    "401": {
+                        "description": "HTTP_UNAUTHORIZED"
+                    },
+                    "500": {
+                        "description": "HTTP_INTERNAL_SERVER_ERROR"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/profile": {
+            "get": {
+                "tags": [
+                    "profile"
+                ],
+                "summary": "Get authenticated profile",
+                "description": "Get authenticated profile",
+                "operationId": "profile",
+                "responses": {
+                    "200": {
+                        "description": "HTTP_OK"
+                    },
+                    "400": {
+                        "description": "HTTP_BAD_REQUEST"
+                    },
+                    "401": {
+                        "description": "HTTP_UNAUTHORIZED"
+                    },
+                    "500": {
+                        "description": "HTTP_INTERNAL_SERVER_ERROR"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "profile"
+                ],
+                "summary": "updateProfile",
+                "description": "updateProfile",
+                "operationId": "updateProfile",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "photo": {
+                                        "description": "photo",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string",
+                                            "format": "binary"
+                                        }
+                                    },
+                                    "name": {
+                                        "description": "name",
+                                        "type": "string"
+                                    },
+                                    "birth_date": {
+                                        "description": "birth_date",
+                                        "type": "string",
+                                        "format": "date"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "HTTP_OK"
+                    },
+                    "400": {
+                        "description": "HTTP_BAD_REQUEST"
+                    },
+                    "401": {
+                        "description": "HTTP_UNAUTHORIZED"
+                    },
+                    "500": {
+                        "description": "HTTP_INTERNAL_SERVER_ERROR"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/profile/assets": {
+            "get": {
+                "tags": [
+                    "profile"
+                ],
+                "summary": "Get assets",
+                "description": "Get assets",
+                "operationId": "profileassets",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "service_schedule_id": {
+                                        "description": "service_schedule_id",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "HTTP_OK"
+                    },
+                    "400": {
+                        "description": "HTTP_BAD_REQUEST"
+                    },
+                    "401": {
+                        "description": "HTTP_UNAUTHORIZED"
+                    },
+                    "500": {
+                        "description": "HTTP_INTERNAL_SERVER_ERROR"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/profile/abonnements/current": {
+            "get": {
+                "tags": [
+                    "profile"
+                ],
+                "summary": "Get current abonnements",
+                "description": "Get current abonnements",
+                "operationId": "profilecurrentabonnements",
+                "responses": {
+                    "200": {
+                        "description": "HTTP_OK"
+                    },
+                    "400": {
+                        "description": "HTTP_BAD_REQUEST"
+                    },
+                    "401": {
+                        "description": "HTTP_UNAUTHORIZED"
+                    },
+                    "500": {
+                        "description": "HTTP_INTERNAL_SERVER_ERROR"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/profile/abonnements/history": {
+            "get": {
+                "tags": [
+                    "profile"
+                ],
+                "summary": "Get history abonnements",
+                "description": "Get history abonnements",
+                "operationId": "profilehistoryabonnements",
+                "responses": {
+                    "200": {
+                        "description": "HTTP_OK"
+                    },
+                    "400": {
+                        "description": "HTTP_BAD_REQUEST"
+                    },
+                    "401": {
+                        "description": "HTTP_UNAUTHORIZED"
+                    },
+                    "500": {
+                        "description": "HTTP_INTERNAL_SERVER_ERROR"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/profile/programs/current": {
+            "get": {
+                "tags": [
+                    "profile"
+                ],
+                "summary": "Get user related current programs",
+                "description": "Get user related current programs",
+                "operationId": "profileCurrentPrograms",
+                "responses": {
+                    "200": {
+                        "description": "HTTP_OK"
+                    },
+                    "400": {
+                        "description": "HTTP_BAD_REQUEST"
+                    },
+                    "401": {
+                        "description": "HTTP_UNAUTHORIZED"
+                    },
+                    "500": {
+                        "description": "HTTP_INTERNAL_SERVER_ERROR"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/profile/programs/history": {
+            "get": {
+                "tags": [
+                    "profile"
+                ],
+                "summary": "Get user related history programs",
+                "description": "Get user related history programs",
+                "operationId": "profileHistoryPrograms",
+                "responses": {
+                    "200": {
+                        "description": "HTTP_OK"
+                    },
+                    "400": {
+                        "description": "HTTP_BAD_REQUEST"
+                    },
+                    "401": {
+                        "description": "HTTP_UNAUTHORIZED"
+                    },
+                    "500": {
+                        "description": "HTTP_INTERNAL_SERVER_ERROR"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/profile/transactions": {
+            "get": {
+                "tags": [
+                    "profile"
+                ],
+                "summary": "Get transactions",
+                "description": "Get transactions",
+                "operationId": "transactions",
+                "responses": {
+                    "200": {
+                        "description": "HTTP_OK"
+                    },
+                    "400": {
+                        "description": "HTTP_BAD_REQUEST"
+                    },
+                    "401": {
+                        "description": "HTTP_UNAUTHORIZED"
+                    },
+                    "500": {
+                        "description": "HTTP_INTERNAL_SERVER_ERROR"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/profile/photo": {
+            "delete": {
+                "tags": [
+                    "profile"
+                ],
+                "summary": "Delete user photo",
+                "description": "Delete user photo",
+                "operationId": "deletephoto",
+                "responses": {
+                    "200": {
+                        "description": "HTTP_OK"
+                    },
+                    "400": {
+                        "description": "HTTP_BAD_REQUEST"
+                    },
+                    "401": {
+                        "description": "HTTP_UNAUTHORIZED"
+                    },
+                    "500": {
+                        "description": "HTTP_INTERNAL_SERVER_ERROR"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/programs": {
+            "get": {
+                "tags": [
+                    "programs"
+                ],
+                "summary": "Get programs",
+                "description": "Get programs",
+                "operationId": "programs",
+                "responses": {
+                    "200": {
+                        "description": "HTTP_OK"
+                    },
+                    "400": {
+                        "description": "HTTP_BAD_REQUEST"
+                    },
+                    "401": {
+                        "description": "HTTP_UNAUTHORIZED"
+                    },
+                    "500": {
+                        "description": "HTTP_INTERNAL_SERVER_ERROR"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/programs/{id}": {
+            "get": {
+                "tags": [
+                    "programs"
+                ],
+                "summary": "Get one by id from programs",
+                "description": "Get one by id from programs",
+                "operationId": "showprograms",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "HTTP_OK"
+                    },
+                    "400": {
+                        "description": "HTTP_BAD_REQUEST"
+                    },
+                    "401": {
+                        "description": "HTTP_UNAUTHORIZED"
+                    },
+                    "500": {
+                        "description": "HTTP_INTERNAL_SERVER_ERROR"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/programs/{program_id}/buy": {
+            "post": {
+                "tags": [
+                    "programs"
+                ],
+                "summary": "buy",
+                "description": "buy",
+                "operationId": "buyprograms",
+                "parameters": [
+                    {
+                        "name": "program_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "HTTP_OK"
+                    },
+                    "400": {
+                        "description": "HTTP_BAD_REQUEST"
+                    },
+                    "401": {
+                        "description": "HTTP_UNAUTHORIZED"
+                    },
+                    "500": {
+                        "description": "HTTP_INTERNAL_SERVER_ERROR"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/services": {
+            "get": {
+                "tags": [
+                    "services"
+                ],
+                "summary": "Get services",
+                "description": "Get services",
+                "operationId": "services",
+                "responses": {
+                    "200": {
+                        "description": "HTTP_OK"
+                    },
+                    "400": {
+                        "description": "HTTP_BAD_REQUEST"
+                    },
+                    "401": {
+                        "description": "HTTP_UNAUTHORIZED"
+                    },
+                    "500": {
+                        "description": "HTTP_INTERNAL_SERVER_ERROR"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/services/{id}": {
+            "get": {
+                "tags": [
+                    "services"
+                ],
+                "summary": "Get one by id from services",
+                "description": "Get one by id from services",
+                "operationId": "showservices",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "HTTP_OK"
+                    },
+                    "400": {
+                        "description": "HTTP_BAD_REQUEST"
+                    },
+                    "401": {
+                        "description": "HTTP_UNAUTHORIZED"
+                    },
+                    "500": {
+                        "description": "HTTP_INTERNAL_SERVER_ERROR"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/services/{service_id}/enroll": {
+            "post": {
+                "tags": [
+                    "services"
+                ],
+                "summary": "enroll",
+                "description": "enroll",
+                "operationId": "enrollService",
+                "parameters": [
+                    {
+                        "name": "service_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Data for enroll",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "service_schedule_id": {
+                                        "type": "integer",
+                                        "default": "1"
+                                    },
+                                    "user_program_id": {
+                                        "type": "integer"
+                                    },
+                                    "user_abonnement_id": {
+                                        "type": "integer"
+                                    },
+                                    "user_abonnement_present_id": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "HTTP_OK"
+                    },
+                    "400": {
+                        "description": "HTTP_BAD_REQUEST"
+                    },
+                    "401": {
+                        "description": "HTTP_UNAUTHORIZED"
+                    },
+                    "500": {
+                        "description": "HTTP_INTERNAL_SERVER_ERROR"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "apiAuth": {
+                "type": "http",
+                "description": "Login with phone and password to get the authentication token",
+                "name": "Token based",
+                "in": "header",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "abonnements",
+            "description": "abonnements"
+        },
+        {
+            "name": "authentication",
+            "description": "authentication"
+        },
+        {
+            "name": "categories",
+            "description": "categories"
+        },
+        {
+            "name": "enrollments",
+            "description": "enrollments"
+        },
+        {
+            "name": "feedbacks",
+            "description": "feedbacks"
+        },
+        {
+            "name": "masterclasses",
+            "description": "masterclasses"
+        },
+        {
+            "name": "pages",
+            "description": "pages"
+        },
+        {
+            "name": "profile",
+            "description": "profile"
+        },
+        {
+            "name": "programs",
+            "description": "programs"
+        },
+        {
+            "name": "services",
+            "description": "services"
+        }
+    ]
+}

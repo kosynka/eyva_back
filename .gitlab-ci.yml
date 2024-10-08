@@ -1,0 +1,162 @@
+stages:
+  - deploy
+  - settings
+
+before_script:
+  # CI_PROJECT_ROOT_NAMESPACE='kulenkov1'
+  # CI_PROJECT_NAMESPACE='kulenkov1/altor'
+  # 'echo CI_PROJECT_NAMESPACE | cut -d '/' -f2' - вырезаем первую часть, оставляя только нужное
+
+  - export LAST_ROOT_NAMESPACE="$(echo $CI_PROJECT_NAMESPACE | rev | cut -d'/' -f1 | rev)"
+  - export NAMESPACE_BASED_BRANCH="${LAST_ROOT_NAMESPACE}-test"
+  - if [ $CI_COMMIT_REF_NAME = "main" ]; then export NAMESPACE_BASED_BRANCH="${LAST_ROOT_NAMESPACE}"; fi
+  - export TAG="$CI_COMMIT_REF_SLUG-$(echo $CI_COMMIT_TIMESTAMP | cut -c1-10)-$CI_COMMIT_SHORT_SHA"
+  - export HOME_DIR="/app/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME"
+  - echo "Namespace for build - ${NAMESPACE_BASED_BRANCH}"
+
+#variables:
+#  home_dir: "/app/kulenkov1/eyva/eyva-backend"
+
+### dev stage
+
+deploy to dev server:
+  stage: deploy
+  tags:
+    - kulenkov
+    - dev
+    - ps
+  only:
+    - develop
+  when: manual
+  variables:
+    DOCKER_NAME: "eyva_php"
+  script:
+    - git -C $HOME_DIR checkout -- .
+    - git -C $HOME_DIR pull origin $CI_COMMIT_REF_NAME
+    - docker-compose -p ${LAST_ROOT_NAMESPACE}_${CI_PROJECT_NAME} -f $HOME_DIR/docker-compose-dev.yml up -d
+    #    - docker exec $DOCKER_NAME composer --working-dir=/var/www update
+    - docker exec $DOCKER_NAME composer --working-dir=/var/www install
+    #    - docker exec $DOCKER_NAME composer --working-dir=/var/www dump-autoload
+    - docker exec $DOCKER_NAME php /var/www/artisan storage:link
+    - docker exec $DOCKER_NAME php /var/www/artisan config:clear
+    - docker exec $DOCKER_NAME php /var/www/artisan view:clear
+    - docker exec $DOCKER_NAME php /var/www/artisan route:clear
+    - docker exec $DOCKER_NAME php /var/www/artisan migrate
+    - docker exec $DOCKER_NAME php /var/www/artisan l5-swagger:generate
+    - docker exec $DOCKER_NAME php /var/www/artisan filament:optimize
+    - docker exec $DOCKER_NAME php /var/www/artisan optimize
+
+settings-develop-php-artisan-migrate:
+  stage: settings
+  tags:
+    - kulenkov
+    - dev
+    - ps
+  only:
+    - develop
+  when: manual
+  variables:
+    DOCKER_NAME: "eyva_php"
+  script:
+    - echo "Start php artisan migrate"
+    - docker exec $DOCKER_NAME php /var/www/artisan migrate:fresh --seed --no-interaction -vvv
+    - echo "End php artisan migrate"
+
+### Prod stage
+#deploy-prod:
+#  stage: deploy
+#  tags:
+#
+#  only:
+#    - main
+#  when: manual
+#  variables:
+#    DOCKER_NAME: "eyva_php"
+#  script:
+#    - git -C $HOME_DIR checkout -- .
+#    - git -C $HOME_DIR pull origin $CI_COMMIT_REF_NAME
+#    - docker-compose -p ${LAST_ROOT_NAMESPACE}_${CI_PROJECT_NAME} -f $HOME_DIR/docker-compose.yml up -d
+#    #    - docker exec $DOCKER_NAME composer --working-dir=/var/www update
+#    - docker exec $DOCKER_NAME composer --working-dir=/var/www install
+#    #    - docker exec $DOCKER_NAME composer --working-dir=/var/www dump-autoload
+#    - docker exec $DOCKER_NAME php /var/www/artisan migrate
+#    - docker exec $DOCKER_NAME php /var/www/artisan config:clear
+#    - docker exec $DOCKER_NAME php /var/www/artisan view:clear
+#    - docker exec $DOCKER_NAME php /var/www/artisan route:clear
+#    - docker exec $DOCKER_NAME php /var/www/artisan optimize
+
+#settings-prod-php-artisan-optimize:
+#  stage: settings
+#  tags:
+#    - frontend
+#    - prod
+#    - taxi
+#  only:
+#    - main
+#  when: manual
+#  script:
+#    - echo "Start php artisan optimize"
+#    - cd $HOME_DIR
+#    - php artisan optimize
+#    - echo "End php artisan optimize"
+#
+#settings-prod-php-artisan-config_cache:
+#  stage: settings
+#  tags:
+#    - frontend
+#    - prod
+#    - taxi
+#  only:
+#    - main
+#  when: manual
+#  script:
+#    - echo "Start php artisan config:cache"
+#    - cd $HOME_DIR
+#    - php artisan config:cache
+#    - echo "End php artisan config:cache"
+#
+#settings-prod-php-artisan-migrate:
+#  stage: settings
+#  tags:
+#    - frontend
+#    - prod
+#    - taxi
+#  only:
+#    - main
+#  when: manual
+#  script:
+#    - echo "Start php artisan migrate"
+#    - cd $HOME_DIR
+#    - php artisan migrate
+#    - echo "End php artisan migrate"
+#
+#settings-prod-php-update-swagger:
+#  stage: settings
+#  tags:
+#    - frontend
+#    - prod
+#    - taxi
+#  only:
+#    - main
+#  when: manual
+#  script:
+#    - echo "Start php update swagger"
+#    - cd $HOME_DIR
+#    - php artisan l5-swagger:generate
+#    - echo "End php update swagger"
+#
+#settings-prod-php-queue-restart:
+#  stage: settings
+#  tags:
+#    - frontend
+#    - prod
+#    - taxi
+#  only:
+#    - main
+#  when: manual
+#  script:
+#    - echo "Start php queue restart"
+#    - cd $HOME_DIR
+#    - php artisan queue:restart
+#    - echo "End php queue restart"
+#
